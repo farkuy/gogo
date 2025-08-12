@@ -23,6 +23,7 @@ func main() {
 		fmt.Println("The port was not found and start on 8000")
 	}
 
+	fmt.Println("Server start on:", port)
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Welcome to the home page!")
 	})

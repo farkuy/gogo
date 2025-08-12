@@ -1,4 +1,4 @@
-module sale
+module github.com/farkuy/gogo
 
 go 1.22.0
 
