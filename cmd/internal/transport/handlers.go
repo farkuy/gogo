@@ -1,22 +1,11 @@
 package transport
 
 import (
-	"encoding/json"
 	"net/http"
 
-	user "github.com/farkuy/gogo/cmd/internal/models"
+	user_handler "github.com/farkuy/gogo/cmd/internal/transport/user_handler"
 )
 
-func GetUserHandler(w http.ResponseWriter, r *http.Request) {
-	userID := r.URL.Query().Get("id")
-	if userID == "" {
-		http.Error(w, "Missing id parameter", http.StatusBadRequest)
-		return
-	}
-
-	//TODO убрать ублюдство
-	testUser := user.User{Id: 1, Email: "first@mail.ru"}
-
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(testUser)
+func RegisterRoutes(mux *http.ServeMux) {
+	mux.HandleFunc("/user/get", user_handler.GetUserHandler)
 }

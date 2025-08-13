@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 
+	transport "github.com/farkuy/gogo/cmd/internal/transport"
 	"github.com/joho/godotenv"
 )
 
@@ -22,11 +23,11 @@ func main() {
 	if !exits {
 		fmt.Println("The port was not found and start on 8000")
 	}
-
 	fmt.Println("Server start on:", port)
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Welcome to the home page!")
-	})
+
+	mux := http.NewServeMux()
+
+	transport.RegisterRoutes(mux)
 
 	err := http.ListenAndServe(port, nil)
 	if err != nil {
