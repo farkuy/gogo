@@ -2,9 +2,9 @@ package transport
 
 import (
 	"encoding/json"
-	"net/http" 
+	"net/http"
 
-	"github.com/farkuy/gogo/cmd/internal/models/user"
+	user "github.com/farkuy/gogo/cmd/internal/models"
 )
 
 func GetUserHandler(w http.ResponseWriter, r *http.Request) {
@@ -15,11 +15,8 @@ func GetUserHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//TODO убрать ублюдство
-	testUser := User{
-		Id 1
-		Email "first@gmail.com"
-	}
+	testUser := user.User{Id: 1, Email: "first@mail.ru"}
 
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(user)
+	json.NewEncoder(w).Encode(testUser)
 }
